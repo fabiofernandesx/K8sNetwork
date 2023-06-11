@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-network-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: k8s-network-demo-site
+  namespace: k8s-network-demo
+  name: k8s-network-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-network-demo-site
+  template:
+    metadata:
+      labels:
+        app: k8s-network-demo-site
+    spec:
+      containers:
+        - image: fabiofernandes/nginx
+          name: k8s-network-demo-site
